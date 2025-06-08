@@ -1,0 +1,410 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #E50914;
+  --background-color: #141414;
+  --light-bg: #181818;
+  --text-color: #FFFFFF;
+  --text-secondary: #E5E5E5;
+  
+  /* Enhanced color variables for better contrast */
+  --text-primary-light: #1a1a1a;
+  --text-secondary-light: #4a4a4a;
+  --text-primary-dark: #ffffff;
+  --text-secondary-dark: #e5e5e5;
+  
+  --bg-primary-light: #ffffff;
+  --bg-secondary-light: #f8f9fa;
+  --bg-tertiary-light: #e9ecef;
+  
+  --bg-primary-dark: #141414;
+  --bg-secondary-dark: #1a1a1a;
+  --bg-tertiary-dark: #262626;
+  
+  --border-light: #e0e0e0;
+  --border-dark: #404040;
+  
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+}
+
+/* System preference detection */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+  }
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  
+  /* Enhanced transitions for theme switching */
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Light mode defaults */
+  background-color: var(--bg-primary-light);
+  color: var(--text-primary-light);
+}
+
+/* Dark mode styles */
+.dark body {
+  background-color: var(--bg-primary-dark);
+  color: var(--text-primary-dark);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Enhanced smooth transitions for all theme-related properties */
+* {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced button and input transitions */
+button, input, select, textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animation classes */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Theme toggle animation */
+@keyframes themeToggleSlide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-fadeSlideUp {
+  animation: fadeSlideUp 0.6s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-800 {
+  animation-delay: 0.8s;
+}
+
+/* Enhanced scrollbar for webkit browsers with theme support */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced focus styles for accessibility with theme support */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  transition: outline 0.2s ease;
+}
+
+.dark button:focus-visible,
+.dark input:focus-visible,
+.dark select:focus-visible,
+.dark textarea:focus-visible,
+.dark a:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Loading animation with theme support */
+.loading-spinner {
+  border: 4px solid var(--border-light);
+  border-left: 4px solid #E50914;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+.dark .loading-spinner {
+  border: 4px solid var(--border-dark);
+  border-left: 4px solid #E50914;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhanced hover effects with theme support */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px var(--shadow-light);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 10px 25px var(--shadow-dark);
+}
+
+/* Enhanced glass morphism effect with theme support */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced text contrast classes for WCAG compliance */
+.text-high-contrast {
+  color: var(--text-primary-light);
+}
+
+.dark .text-high-contrast {
+  color: var(--text-primary-dark);
+}
+
+.text-medium-contrast {
+  color: var(--text-secondary-light);
+}
+
+.dark .text-medium-contrast {
+  color: var(--text-secondary-dark);
+}
+
+/* Enhanced background classes */
+.bg-primary {
+  background-color: var(--bg-primary-light);
+}
+
+.dark .bg-primary {
+  background-color: var(--bg-primary-dark);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary-light);
+}
+
+.dark .bg-secondary {
+  background-color: var(--bg-secondary-dark);
+}
+
+.bg-tertiary {
+  background-color: var(--bg-tertiary-light);
+}
+
+.dark .bg-tertiary {
+  background-color: var(--bg-tertiary-dark);
+}
+
+/* Enhanced border classes */
+.border-theme {
+  border-color: var(--border-light);
+}
+
+.dark .border-theme {
+  border-color: var(--border-dark);
+}
+
+/* Theme toggle specific styles */
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-slider.dark {
+  transform: translateX(1.75rem);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-high-contrast {
+    color: #000000;
+  }
+  
+  .dark .text-high-contrast {
+    color: #ffffff;
+  }
+  
+  button, input, select {
+    border: 2px solid currentColor;
+  }
+}

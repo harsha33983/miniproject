@@ -18,7 +18,7 @@ const ChatBotToggle = () => {
           className={`group relative w-16 h-16 bg-gradient-to-r from-[#E50914] to-[#f6121d] hover:from-[#f6121d] hover:to-[#E50914] text-white rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95 ${
             isOpen ? 'rotate-180' : ''
           }`}
-          aria-label="Open Universal AI Assistant"
+          aria-label="Open Harsha AI Assistant"
         >
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#E50914] to-[#f6121d] opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
           
@@ -50,13 +50,13 @@ const ChatBotToggle = () => {
           <div className="absolute bottom-full right-0 mb-3 px-4 py-3 bg-black/95 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none backdrop-blur-sm border border-gray-700">
             <div className="flex items-center gap-2 mb-1">
               <Brain size={14} />
-              <span className="font-semibold">Universal AI Assistant</span>
+              <span className="font-semibold">Harsha AI Assistant</span>
               <Globe size={12} className="text-blue-300" />
             </div>
             <div className="text-xs opacity-90 space-y-1">
               <div className="flex items-center gap-1">
                 <Sparkles size={10} className="text-yellow-300" />
-                <span>Powered by Gemini AI</span>
+                <span>Advanced AI Technology</span>
               </div>
               <div>🎬 Entertainment • 🌍 General Knowledge • 🤖 Any Question</div>
             </div>

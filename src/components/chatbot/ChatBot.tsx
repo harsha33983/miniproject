@@ -96,7 +96,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
     });
   };
 
-  // Enhanced query processing with Gemini AI
+  // Enhanced query processing with Harsha AI
   const processQuery = async (query: string): Promise<Message> => {
     try {
       // Check if it's a simple entertainment query that can be handled with real data
@@ -110,7 +110,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
         return await handleSearchQuery(query);
       }
 
-      // Use Gemini AI for all other queries
+      // Use Harsha AI for all other queries
       const response = await geminiService.generateResponse(query, userContext.conversationHistory);
       
       // Update user context
@@ -294,7 +294,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
     if (isOpen && messages.length === 0) {
       const welcomeMessage: Message = {
         id: '1',
-        text: `Hi${currentUser ? ` ${currentUser.email?.split('@')[0]}` : ''}! 🧠✨\n\nI'm your **Universal AI Assistant** powered by Google's Gemini AI! I can help you with:\n\n🎬 **Entertainment & Streaming**\n• Movie and TV show recommendations\n• Content analysis and reviews\n• Cast and crew information\n• Trending content discovery\n\n🌍 **General Knowledge**\n• Science, technology, and research\n• History, culture, and current events\n• Education and learning support\n• Creative writing and brainstorming\n\n🤖 **Advanced Capabilities**\n• Complex problem solving\n• Detailed explanations on any topic\n• Comparative analysis\n• Step-by-step tutorials\n\n**Ask me anything!** From "What should I watch tonight?" to "Explain quantum physics" - I'm here to help with any question you have.`,
+        text: `Hi${currentUser ? ` ${currentUser.email?.split('@')[0]}` : ''}! 🧠✨\n\nI'm **Harsha AI**, your intelligent assistant for Streamflix! I can help you with:\n\n🎬 **Entertainment & Streaming**\n• Movie and TV show recommendations\n• Content analysis and reviews\n• Cast and crew information\n• Trending content discovery\n\n🌍 **General Knowledge**\n• Science, technology, and research\n• History, culture, and current events\n• Education and learning support\n• Creative writing and brainstorming\n\n🤖 **Advanced Capabilities**\n• Complex problem solving\n• Detailed explanations on any topic\n• Comparative analysis\n• Step-by-step tutorials\n\n**Ask me anything!** From "What should I watch tonight?" to "Explain quantum physics" - I'm here to help with any question you have.`,
         isBot: true,
         timestamp: new Date(),
         suggestions: [
@@ -397,10 +397,10 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
           </div>
           <div>
             <h3 className="font-semibold flex items-center gap-2">
-              Streamflix AI
+              Harsha AI
               <Globe size={14} className="text-blue-300" />
             </h3>
-            <p className="text-xs opacity-90">Powered by Gemini AI • Universal Assistant</p>
+            <p className="text-xs opacity-90">Advanced AI Assistant • Universal Knowledge</p>
           </div>
         </div>
         <button
@@ -484,7 +484,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
                 <div className="flex items-center space-x-1">
                   <span className="text-xs text-gray-500 dark:text-gray-400 mr-2 flex items-center gap-1">
                     <Sparkles size={12} className="animate-pulse" />
-                    Gemini AI thinking
+                    Harsha AI thinking
                   </span>
                   <div className="w-2 h-2 bg-[#E50914] rounded-full animate-pulse"></div>
                   <div className="w-2 h-2 bg-[#E50914] rounded-full animate-pulse animation-delay-200"></div>
@@ -524,7 +524,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
         <div className="mt-2 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
           <div className="flex items-center gap-1">
             <Brain size={12} />
-            <span>Powered by Gemini AI</span>
+            <span>Powered by Harsha AI</span>
           </div>
           {userContext.conversationHistory.length > 0 && (
             <div className="flex items-center gap-1">

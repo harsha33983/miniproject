@@ -15,7 +15,7 @@ interface ChatMessage {
   }>;
 }
 
-class GeminiService {
+class HarshaAIService {
   private apiKey: string;
   private baseUrl = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
   private chatHistory: ChatMessage[] = [];
@@ -23,12 +23,12 @@ class GeminiService {
   constructor() {
     this.apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!this.apiKey) {
-      console.warn('Gemini API key not found. Please add VITE_GEMINI_API_KEY to your .env file');
+      console.warn('Harsha AI API key not found. Please add VITE_GEMINI_API_KEY to your .env file');
     }
   }
 
   private createSystemPrompt(): string {
-    return `You are an advanced AI assistant for Streamflix, a Netflix-inspired streaming platform. You have comprehensive knowledge about:
+    return `You are Harsha AI, an advanced AI assistant for Streamflix, a Netflix-inspired streaming platform. You have comprehensive knowledge about:
 
 CORE EXPERTISE:
 - Movies, TV shows, documentaries, and entertainment content
@@ -58,7 +58,7 @@ RESPONSE FORMAT:
 - Provide sources or reasoning when making claims
 - Keep entertainment-related responses detailed but accessible
 
-Remember: While you specialize in entertainment, you can discuss ANY topic the user asks about. Be helpful, accurate, and engaging regardless of the subject matter.`;
+Remember: While you specialize in entertainment, you can discuss ANY topic the user asks about. Be helpful, accurate, and engaging regardless of the subject matter. You are Harsha AI, a sophisticated assistant created to help users with all their questions and needs.`;
   }
 
   async generateResponse(userMessage: string, conversationContext?: string[]): Promise<{
@@ -72,9 +72,9 @@ Remember: While you specialize in entertainment, you can discuss ANY topic the u
   }> {
     if (!this.apiKey) {
       return {
-        text: "🚫 **Gemini API Not Configured**\n\nTo enable advanced AI capabilities, please:\n\n1. Get a Gemini API key from Google AI Studio\n2. Add it to your `.env` file as `VITE_GEMINI_API_KEY`\n3. Restart the application\n\nFor now, I can still help with basic entertainment questions using my built-in knowledge!",
+        text: "🚫 **Harsha AI Not Configured**\n\nTo enable advanced AI capabilities, please:\n\n1. Get a Gemini API key from Google AI Studio\n2. Add it to your `.env` file as `VITE_GEMINI_API_KEY`\n3. Restart the application\n\nFor now, I can still help with basic entertainment questions using my built-in knowledge!",
         suggestions: [
-          "How to get Gemini API key?",
+          "How to get API key?",
           "Basic movie recommendations",
           "TV show suggestions",
           "Entertainment trivia"
@@ -96,7 +96,7 @@ Remember: While you specialize in entertainment, you can discuss ANY topic the u
         },
         {
           role: 'model',
-          parts: [{ text: 'I understand! I\'m your advanced AI assistant for Streamflix, ready to help with entertainment content and any other questions you might have. I\'ll provide detailed, engaging responses with proper formatting and helpful suggestions. What would you like to know?' }]
+          parts: [{ text: 'I understand! I\'m Harsha AI, your advanced assistant for Streamflix, ready to help with entertainment content and any other questions you might have. I\'ll provide detailed, engaging responses with proper formatting and helpful suggestions. What would you like to know?' }]
         }
       ];
 
@@ -154,13 +154,13 @@ Remember: While you specialize in entertainment, you can discuss ANY topic the u
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(`Gemini API error: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
+        throw new Error(`Harsha AI API error: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
       }
 
       const data: GeminiResponse = await response.json();
       
       if (!data.candidates || data.candidates.length === 0) {
-        throw new Error('No response generated from Gemini API');
+        throw new Error('No response generated from Harsha AI');
       }
 
       const generatedText = data.candidates[0].content.parts[0].text;
@@ -176,12 +176,12 @@ Remember: While you specialize in entertainment, you can discuss ANY topic the u
         metadata: {
           type: responseType,
           confidence,
-          sources: ['Gemini AI', 'Google AI']
+          sources: ['Harsha AI', 'Advanced AI Technology']
         }
       };
 
     } catch (error) {
-      console.error('Gemini API Error:', error);
+      console.error('Harsha AI Error:', error);
       
       // Fallback response
       return {
@@ -320,5 +320,5 @@ Remember: While you specialize in entertainment, you can discuss ANY topic the u
   }
 }
 
-export const geminiService = new GeminiService();
-export default geminiService;
+export const harshaAIService = new HarshaAIService();
+export default harshaAIService;

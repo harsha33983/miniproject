@@ -6,6 +6,7 @@ import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import LoadingScreen from './components/common/LoadingScreen';
+import ChatBotToggle from './components/chatbot/ChatBotToggle';
 
 // Lazy loaded components
 const Home = lazy(() => import('./pages/Home'));
@@ -56,6 +57,9 @@ function App() {
               </Suspense>
             </main>
             <Footer />
+            
+            {/* AI ChatBot */}
+            <ChatBotToggle />
           </div>
         </Router>
       </ThemeProvider>

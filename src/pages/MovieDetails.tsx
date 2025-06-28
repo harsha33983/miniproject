@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Play, Star, Calendar, Clock, ChevronLeft, Youtube } from 'lucide-react';
+import { Play, Star, Calendar, Clock, ChevronLeft, Youtube, X } from 'lucide-react';
 import { fetchMovieDetails, getImageUrl, searchYouTubeMovie } from '../services/api';
 import ContentRow from '../components/movies/ContentRow';
 import LoadingScreen from '../components/common/LoadingScreen';
@@ -12,6 +12,7 @@ const MovieDetails = () => {
   const [error, setError] = useState('');
   const [fullMovieId, setFullMovieId] = useState<string | null>(null);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [showFullMovie, setShowFullMovie] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,9 +42,12 @@ const MovieDetails = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  // Close trailer when navigating away
+  // Close modals when navigating away
   useEffect(() => {
-    return () => setShowTrailer(false);
+    return () => {
+      setShowTrailer(false);
+      setShowFullMovie(false);
+    };
   }, []);
 
   if (loading) return <LoadingScreen />;
@@ -88,15 +92,39 @@ const MovieDetails = () => {
 
   return (
     <div className="min-h-screen pb-16 bg-gray-50 dark:bg-[#141414] transition-colors duration-300">
+      {/* Full Movie Modal */}
+      {showFullMovie && fullMovieId && (
+        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fadeSlideUp">
+          <div className="relative w-full max-w-6xl aspect-video">
+            <button
+              onClick={() => setShowFullMovie(false)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors duration-200 flex items-center gap-2 bg-black/50 px-4 py-2 rounded-lg"
+            >
+              <X size={20} />
+              Close Movie
+            </button>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${fullMovieId}?autoplay=1&rel=0&modestbranding=1&fs=1`}
+              className="w-full h-full rounded-lg shadow-2xl"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowFullScreen
+              referrerPolicy="strict-origin"
+              title={`${movie.title} Full Movie`}
+            ></iframe>
+          </div>
+        </div>
+      )}
+
       {/* Trailer Modal */}
       {showTrailer && trailer && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fadeSlideUp">
           <div className="relative w-full max-w-4xl aspect-video">
             <button
               onClick={() => setShowTrailer(false)}
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors duration-200"
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors duration-200 flex items-center gap-2 bg-black/50 px-4 py-2 rounded-lg"
             >
-              Close
+              <X size={20} />
+              Close Trailer
             </button>
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&rel=0`}
@@ -199,19 +227,18 @@ const MovieDetails = () => {
             {/* Action buttons */}
             <div className="flex flex-wrap gap-4 mb-8">
               {fullMovieId ? (
-                <a 
-                  href={`https://www.youtube.com/watch?v=${fullMovieId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#E50914] text-white px-6 py-3 rounded hover:bg-[#f6121d] transition-all duration-200 flex items-center gap-2 hover:scale-105"
+                <button 
+                  onClick={() => setShowFullMovie(true)}
+                  className="bg-[#E50914] text-white px-6 py-3 rounded hover:bg-[#f6121d] transition-all duration-200 flex items-center gap-2 hover:scale-105 shadow-lg"
                 >
                   <Play size={20} fill="white" />
                   Watch Movie
-                </a>
+                </button>
               ) : (
                 <button 
                   className="bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-600 transition-all duration-200 flex items-center gap-2 cursor-not-allowed opacity-50"
                   disabled
+                  title="Full movie not available"
                 >
                   <Play size={20} fill="white" />
                   Not Available
@@ -221,7 +248,7 @@ const MovieDetails = () => {
               {trailer && (
                 <button 
                   onClick={() => setShowTrailer(true)}
-                  className="bg-red-800 text-white px-6 py-3 rounded hover:bg-red-700 transition-all duration-200 flex items-center gap-2 hover:scale-105"
+                  className="bg-gray-700 dark:bg-gray-600 text-white px-6 py-3 rounded hover:bg-gray-800 dark:hover:bg-gray-500 transition-all duration-200 flex items-center gap-2 hover:scale-105"
                 >
                   <Youtube size={20} />
                   Watch Trailer

@@ -50,13 +50,13 @@ const TVShows = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#141414] transition-colors duration-500">
         <div className="text-center p-6">
           <h2 className="text-2xl font-bold mb-4 text-[#E50914]">Something went wrong</h2>
-          <p className="text-gray-300 mb-6">{error}</p>
+          <p className="text-gray-600 dark:text-gray-300 mb-6 transition-colors duration-300">{error}</p>
           <button 
             onClick={() => window.location.reload()}
-            className="bg-[#E50914] text-white px-6 py-2 rounded hover:bg-[#f6121d] transition"
+            className="bg-[#E50914] text-white px-6 py-2 rounded hover:bg-[#f6121d] transition-all duration-300 transform hover:scale-105"
           >
             Try Again
           </button>
@@ -66,9 +66,9 @@ const TVShows = () => {
   }
 
   return (
-    <div className="pt-24 pb-16">
+    <div className="pt-24 pb-16 bg-gray-50 dark:bg-[#141414] transition-colors duration-500">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8">TV Shows</h1>
+        <h1 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white transition-colors duration-300">TV Shows</h1>
         
         {airingTodayShows.length > 0 && (
           <ContentRow title="Airing Today" items={airingTodayShows} type="tv" />

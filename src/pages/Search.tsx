@@ -52,22 +52,22 @@ const Search = () => {
   if (loading && page === 1) return <LoadingScreen />;
 
   return (
-    <div className="pt-24 pb-16 min-h-screen">
+    <div className="pt-24 pb-16 min-h-screen bg-gray-50 dark:bg-[#141414] transition-colors duration-500">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-2">Search Results</h1>
-        <p className="text-gray-400 mb-8">
+        <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white transition-colors duration-300">Search Results</h1>
+        <p className="text-gray-600 dark:text-gray-400 mb-8 transition-colors duration-300">
           {query ? `Showing results for "${query}"` : 'Enter a search term above'}
         </p>
 
         {error && (
-          <div className="bg-red-900/50 border border-red-700 rounded p-4 mb-8">
-            <p className="text-red-200">{error}</p>
+          <div className="bg-red-100 dark:bg-red-900/50 border border-red-300 dark:border-red-700 rounded p-4 mb-8 transition-colors duration-300">
+            <p className="text-red-700 dark:text-red-200">{error}</p>
           </div>
         )}
 
         {!query && (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-gray-500 dark:text-gray-400 transition-colors duration-300">
               Use the search bar above to find movies and TV shows
             </p>
           </div>
@@ -75,7 +75,7 @@ const Search = () => {
 
         {query && results.length === 0 && !loading && (
           <div className="text-center py-12">
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-gray-500 dark:text-gray-400 transition-colors duration-300">
               No results found for "{query}"
             </p>
           </div>
@@ -99,7 +99,7 @@ const Search = () => {
           <div className="flex justify-center mt-8">
             <button
               onClick={loadMoreResults}
-              className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded transition"
+              className="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-6 py-2 rounded transition-all duration-300 transform hover:scale-105"
             >
               {loading ? 'Loading...' : 'Load More'}
             </button>

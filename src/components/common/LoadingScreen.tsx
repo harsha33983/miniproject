@@ -7,20 +7,10 @@ interface LoadingScreenProps {
    */
   spinnerColor?: string;
   /** 
-   * Background color of the loading screen 
-   * @default '#141414' (dark gray)
-   */
-  backgroundColor?: string;
-  /** 
    * Text to display below the spinner 
    * @default 'Loading...'
    */
   text?: string;
-  /** 
-   * Color of the text 
-   * @default 'text-gray-300'
-   */
-  textColor?: string;
   /** 
    * Size of the spinner (in pixels) 
    * @default 64
@@ -39,24 +29,21 @@ interface LoadingScreenProps {
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({
   spinnerColor = '#E50914',
-  backgroundColor = '#141414',
   text = 'Loading...',
-  textColor = 'text-gray-300',
   size = 64,
   thickness = 4,
   className = '',
 }) => {
   return (
     <div 
-      className={`min-h-screen flex items-center justify-center ${className}`}
-      style={{ backgroundColor }}
+      className={`min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#141414] transition-colors duration-500 ${className}`}
       role="status"
       aria-live="polite"
       aria-label="Loading"
     >
       <div className="flex flex-col items-center">
         <div 
-          className="animate-spin rounded-full"
+          className="animate-spin rounded-full border-gray-200 dark:border-gray-700 transition-colors duration-300"
           style={{
             width: size,
             height: size,
@@ -68,7 +55,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
           }}
         />
         {text && (
-          <p className={`mt-4 ${textColor}`}>
+          <p className="mt-4 text-gray-600 dark:text-gray-300 transition-colors duration-300 font-medium">
             {text}
           </p>
         )}

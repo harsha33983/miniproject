@@ -66,13 +66,13 @@ const Home = () => {
   
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#141414] transition-colors duration-500">
         <div className="text-center p-6">
           <h2 className="text-2xl font-bold mb-4 text-[#E50914]">Something went wrong</h2>
-          <p className="text-gray-300 mb-6">{error}</p>
+          <p className="text-gray-600 dark:text-gray-300 mb-6 transition-colors duration-300">{error}</p>
           <button 
             onClick={() => window.location.reload()}
-            className="bg-[#E50914] text-white px-6 py-2 rounded hover:bg-[#f6121d] transition"
+            className="bg-[#E50914] text-white px-6 py-2 rounded hover:bg-[#f6121d] transition-all duration-300 transform hover:scale-105"
           >
             Try Again
           </button>
@@ -82,12 +82,12 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="bg-gray-50 dark:bg-[#141414] transition-colors duration-500">
       {/* Hero Section */}
       {heroContent && <Hero item={heroContent} type={heroContent.media_type === 'tv' ? 'tv' : 'movie'} />}
       
       {/* Content Rows */}
-      <div className="pt-4 pb-16">
+      <div className="pt-4 pb-16 bg-gray-50 dark:bg-[#141414] transition-colors duration-500">
         {trending.length > 0 && (
           <ContentRow title="Trending Now" items={trending} />
         )}

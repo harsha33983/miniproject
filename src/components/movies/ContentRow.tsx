@@ -44,34 +44,38 @@ const ContentRow: React.FC<ContentRowProps> = ({ title, items, type = 'movie' })
 
   return (
     <div className="mb-8 relative group">
-      <h2 className="text-xl md:text-2xl font-bold mb-4 px-4 md:px-8">{title}</h2>
+      <h2 className="text-xl md:text-2xl font-bold mb-4 px-4 md:px-8 text-gray-900 dark:text-white transition-colors duration-300">{title}</h2>
       
-      {/* Navigation arrows */}
+      {/* Enhanced navigation arrows with better theme support */}
       {showLeftArrow && (
         <button 
           onClick={() => scroll('left')}
-          className="absolute left-0 z-10 h-full w-12 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute left-0 z-10 h-full w-12 bg-black/40 hover:bg-black/60 dark:bg-black/60 dark:hover:bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm"
           aria-label="Scroll left"
         >
-          <ChevronLeft size={32} className="text-white" />
+          <ChevronLeft size={32} className="text-white drop-shadow-lg" />
         </button>
       )}
       
       {showRightArrow && (
         <button 
           onClick={() => scroll('right')}
-          className="absolute right-0 z-10 h-full w-12 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+          className="absolute right-0 z-10 h-full w-12 bg-black/40 hover:bg-black/60 dark:bg-black/60 dark:hover:bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm"
           aria-label="Scroll right"
         >
-          <ChevronRight size={32} className="text-white" />
+          <ChevronRight size={32} className="text-white drop-shadow-lg" />
         </button>
       )}
       
-      {/* Content row */}
+      {/* Content row with enhanced scrollbar styling */}
       <div 
         ref={rowRef}
-        className="flex overflow-x-auto scrollbar-hide pb-4 px-4 md:px-8 gap-3"
+        className="flex overflow-x-auto scrollbar-hide pb-4 px-4 md:px-8 gap-3 scroll-smooth"
         onScroll={handleScroll}
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
       >
         {items.map((item) => (
           <ContentCard key={item.id} item={item} type={type} />

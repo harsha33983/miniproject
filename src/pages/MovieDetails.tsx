@@ -235,7 +235,11 @@ const MovieDetails = () => {
                 <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Cast</h2>
                 <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
                   {movie.credits.cast.slice(0, 10).map((person: any) => (
-                    <div key={person.id} className="flex-none w-24 group">
+                    <Link 
+                      key={person.id} 
+                      to={`/person/${person.id}`}
+                      className="flex-none w-24 group cursor-pointer"
+                    >
                       <div className="relative overflow-hidden rounded-md mb-2">
                         {person.profile_path ? (
                           <img 
@@ -257,10 +261,10 @@ const MovieDetails = () => {
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                       <div>
-                        <p className="text-sm font-medium truncate text-gray-900 dark:text-white">{person.name}</p>
+                        <p className="text-sm font-medium truncate text-gray-900 dark:text-white group-hover:text-[#E50914] transition-colors duration-200">{person.name}</p>
                         <p className="text-xs text-gray-600 dark:text-gray-400 truncate">{person.character}</p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>

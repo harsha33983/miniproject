@@ -84,6 +84,15 @@ export const fetchTVDetails = async (id: string) => {
   return response.data;
 };
 
+export const fetchPersonDetails = async (id: string) => {
+  const response = await api.get(`/person/${id}`, {
+    params: {
+      append_to_response: 'movie_credits,tv_credits,images'
+    }
+  });
+  return response.data;
+};
+
 export const searchContent = async (query: string, page = 1) => {
   const response = await api.get('/search/multi', {
     params: {

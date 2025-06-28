@@ -42,10 +42,10 @@ const TVDetails = () => {
 
   if (error || !show) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#141414]">
         <div className="text-center p-6">
           <h2 className="text-2xl font-bold mb-4 text-[#E50914]">Something went wrong</h2>
-          <p className="text-gray-300 mb-6">{error || 'TV show not found'}</p>
+          <p className="text-gray-600 dark:text-gray-300 mb-6">{error || 'TV show not found'}</p>
           <Link 
             to="/"
             className="bg-[#E50914] text-white px-6 py-2 rounded hover:bg-[#f6121d] transition"
@@ -72,7 +72,7 @@ const TVDetails = () => {
   );
 
   return (
-    <div className="min-h-screen pb-16">
+    <div className="min-h-screen pb-16 bg-gray-50 dark:bg-[#141414] transition-colors duration-300">
       {/* Trailer Modal */}
       {showTrailer && trailer && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fadeSlideUp">
@@ -100,7 +100,7 @@ const TVDetails = () => {
         to="/"
         className="fixed top-20 left-4 z-40 bg-black/50 p-2 rounded-full hover:bg-black/70 transition-all duration-200 hover:scale-110"
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={24} className="text-white" />
       </Link>
 
       {/* Hero section with backdrop */}
@@ -112,8 +112,8 @@ const TVDetails = () => {
           }}
         >
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#14141499] to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#141414] to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-50 dark:from-[#141414] via-gray-50/50 dark:via-[#14141499] to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-50 dark:from-[#141414] to-transparent"></div>
         </div>
 
         {/* Content */}
@@ -129,13 +129,13 @@ const TVDetails = () => {
 
           {/* Details */}
           <div className="flex-1 animate-fadeSlideUp animation-delay-200">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">{show.name}</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-gray-900 dark:text-white">{show.name}</h1>
             {show.tagline && (
-              <p className="text-xl text-gray-400 italic mb-4">{show.tagline}</p>
+              <p className="text-xl text-gray-600 dark:text-gray-400 italic mb-4">{show.tagline}</p>
             )}
 
             {/* Info row */}
-            <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-300">
+            <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-600 dark:text-gray-300">
               {/* Rating */}
               {show.vote_average && (
                 <div className="flex items-center">
@@ -166,7 +166,7 @@ const TVDetails = () => {
                   {show.genres.map((genre: any) => (
                     <span 
                       key={genre.id}
-                      className="px-2 py-1 bg-gray-800 rounded-md text-xs hover:bg-gray-700 transition-colors duration-200"
+                      className="px-2 py-1 bg-gray-200 dark:bg-gray-800 rounded-md text-xs hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-200"
                     >
                       {genre.name}
                     </span>
@@ -177,8 +177,8 @@ const TVDetails = () => {
 
             {/* Overview */}
             <div className="mb-8">
-              <h2 className="text-xl font-semibold mb-2">Overview</h2>
-              <p className="text-gray-300 leading-relaxed">{show.overview}</p>
+              <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Overview</h2>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{show.overview}</p>
             </div>
 
             {/* Action buttons */}
@@ -204,10 +204,14 @@ const TVDetails = () => {
             {/* Cast */}
             {show.credits?.cast && show.credits.cast.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-4">Cast</h2>
+                <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Cast</h2>
                 <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
                   {show.credits.cast.slice(0, 10).map((person: any) => (
-                    <div key={person.id} className="flex-none w-24 group">
+                    <Link 
+                      key={person.id} 
+                      to={`/person/${person.id}`}
+                      className="flex-none w-24 group cursor-pointer"
+                    >
                       <div className="relative overflow-hidden rounded-md mb-2">
                         {person.profile_path ? (
                           <img 
@@ -220,8 +224,8 @@ const TVDetails = () => {
                             }}
                           />
                         ) : (
-                          <div className="w-24 h-24 bg-gray-700 flex items-center justify-center rounded-md">
-                            <span className="text-2xl font-bold text-gray-400">
+                          <div className="w-24 h-24 bg-gray-300 dark:bg-gray-700 flex items-center justify-center rounded-md">
+                            <span className="text-2xl font-bold text-gray-600 dark:text-gray-400">
                               {person.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}
                             </span>
                           </div>
@@ -229,10 +233,10 @@ const TVDetails = () => {
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
                       <div>
-                        <p className="text-sm font-medium truncate">{person.name}</p>
-                        <p className="text-xs text-gray-400 truncate">{person.character}</p>
+                        <p className="text-sm font-medium truncate text-gray-900 dark:text-white group-hover:text-[#E50914] transition-colors duration-200">{person.name}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 truncate">{person.character}</p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>

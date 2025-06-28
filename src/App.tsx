@@ -13,6 +13,7 @@ const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
 const MovieDetails = lazy(() => import('./pages/MovieDetails'));
 const TVDetails = lazy(() => import('./pages/TVDetails'));
+const PersonDetails = lazy(() => import('./pages/PersonDetails'));
 const Movies = lazy(() => import('./pages/Movies'));
 const TVShows = lazy(() => import('./pages/TVShows'));
 const Search = lazy(() => import('./pages/Search'));
@@ -28,7 +29,7 @@ function App() {
             <main className="flex-grow">
               <Suspense fallback={<LoadingScreen />}>
                 <Routes>
-                  <Route path="/" element={<Navigate to="/browse\" replace />} />
+                  <Route path="/" element={<Navigate to="/browse" replace />} />
                   <Route path="/browse" element={<Home />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/signup" element={<Signup />} />
@@ -42,6 +43,7 @@ function App() {
                       <TVDetails />
                     </ProtectedRoute>
                   } />
+                  <Route path="/person/:id" element={<PersonDetails />} />
                   <Route path="/movies" element={<Movies />} />
                   <Route path="/tv" element={<TVShows />} />
                   <Route path="/search" element={<Search />} />

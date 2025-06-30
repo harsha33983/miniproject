@@ -5,6 +5,7 @@ A modern, responsive streaming platform inspired by Netflix, built with React, T
 ## Features
 
 - User authentication with Firebase (signup, login, logout)
+- integrated ai chat bot
 - Browse movies and TV shows by categories
 - Hero banner featuring trending content
 - Detailed movie and TV show pages
